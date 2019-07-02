@@ -1,0 +1,55 @@
+<div
+  class="h-100vh w-100 light-dark"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+>
+  <mat-card class="w-350 p-24 mat-elevation-z4">
+    <div class="signup-logo text-center pb-16">
+      <!-- <img src="./assets/images/logo.png" alt="logo" /> -->
+      <h2 class="m-0 mb-16 mt-8">Seller Info</h2>
+    </div>
+
+    <form fxLayout="column" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          type="text"
+          name="name"
+          placeholder="Name"
+        />
+      </mat-form-field>
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Age</mat-label>
+        <input
+          matInput
+          formControlName="age"
+          type="number"
+          name="age"
+          placeholder="Age"
+        />
+      </mat-form-field>
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Address</mat-label>
+        <input
+          matInput
+          formControlName="address"
+          type="text"
+          name="address"
+          placeholder="Address"
+        />
+      </mat-form-field>
+
+      <div
+        fxLayout="row wrap"
+        fxLayoutAlign="center center"
+        style="margin-top: 20px;"
+      >
+        <button [disabled]="false" mat-raised-button color="primary">
+          Submit
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

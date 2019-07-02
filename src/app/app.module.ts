@@ -14,13 +14,17 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { MaterialModule } from "./modules/material.module";
 import { SignupComponent } from "./signup/signup.component";
 import { environment } from "src/environments/environment";
+import { SellerComponent } from './seller/seller.component';
+import { BuyerComponent } from './buyer/buyer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    DashboardComponent
+    DashboardComponent,
+    SellerComponent,
+    BuyerComponent
   ],
   imports: [
     BrowserModule,

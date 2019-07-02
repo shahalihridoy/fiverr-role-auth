@@ -1,7 +1,33 @@
+<div class="flex flex-center py-24">
+  <a
+    *ngIf="
+      !(sellerInfo | async)?.data() &&
+      (userInfo | async)?.data().role.includes('seller')
+    "
+    href="/seller"
+    mat-raised-button
+    color="accent"
+    >Seller Info</a
+  >
+  <div class="px-8"></div>
+  <a
+    *ngIf="
+      !(buyerInfo | async)?.data() &&
+      (userInfo | async)?.data().role.includes('buyer')
+    "
+    href="/buyer"
+    mat-raised-button
+    color="accent"
+    >Buyer Info</a
+  >
+  <div class="px-8"></div>
+  <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+</div>
+
 <!-- admin will see this paragraph -->
 <div
   class="p-48 text-center"
-  *ngIf="(userInfo | async)?.data().role == 'admin'"
+  *ngIf="(userInfo | async)?.data().role.includes('admin')"
 >
   <h1>Admin</h1>
   <p>
@@ -19,7 +45,7 @@
 <!-- buyer will see this -->
 <div
   class="p-48 text-center"
-  *ngIf="(userInfo | async)?.data().role == 'buyer'"
+  *ngIf="(userInfo | async)?.data().role.includes('buyer')"
 >
   <h1>Buyer</h1>
   <p>
@@ -37,9 +63,9 @@
 <!-- seller will see this -->
 <div
   class="p-48 text-center"
-  *ngIf="(userInfo | async)?.data().role == 'seller'"
+  *ngIf="(userInfo | async)?.data().role.includes('seller')"
 >
-  <h1>Buyer</h1>
+  <h1>Seller</h1>
   <p>
     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     Lorem Ipsum has been the industry's standard dummy text ever since the

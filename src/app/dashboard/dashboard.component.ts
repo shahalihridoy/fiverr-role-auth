@@ -12,6 +12,8 @@ import { Subscription } from "rxjs";
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   userInfo = null;
+  sellerInfo = null;
+  buyerInfo = null;
   sub: Subscription = null;
   constructor(
     private authService: AuthService,
@@ -27,6 +29,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
           .collection("users")
           .doc(user.uid)
           .get();
+        this.sellerInfo = this.afs
+          .collection("sellers")
+          .doc(user.uid)
+          .get();
+        this.buyerInfo = this.afs
+          .collection("buyers")
+          .doc(user.uid)
+          .get();
       } else {
         this.router.navigateByUrl("/login");
       }
@@ -35,5 +45,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub ? this.sub.unsubscribe() : null;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
