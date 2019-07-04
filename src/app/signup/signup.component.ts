@@ -51,6 +51,7 @@ export class SignupComponent implements OnInit {
         })
         .then(() => {
           if (this.afAuth.user) {
+            delete this.signupForm.value.password;
             this.afs
               .collection("users")
               .doc(this.authService.userID)
