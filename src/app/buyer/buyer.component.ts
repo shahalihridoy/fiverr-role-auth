@@ -31,6 +31,21 @@ export class BuyerComponent implements OnInit {
   ngOnInit() {
     this.sub = this.auth.authState.subscribe(user => {
       this.uid = user.uid;
+      // pull buyer data from firebase
+      this.afs
+        .collection("buyers")
+        .doc(this.uid)
+        .get()
+        .subscribe(data => {
+          if (data.exists) {
+            let { name, age, address } = data.data();
+            this.form = this.fb.group({
+              name: [name, Validators.required],
+              age: [age, Validators.required],
+              address: [address, Validators.required]
+            });
+          }
+        });
     });
   }
 

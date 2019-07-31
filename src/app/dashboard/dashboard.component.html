@@ -1,5 +1,5 @@
 <div class="flex flex-center py-24">
-  <a
+  <!-- <a
     *ngIf="
       !(sellerInfo | async)?.data() &&
       (userInfo | async)?.data().role.includes('seller')
@@ -9,8 +9,18 @@
     color="accent"
     >Seller Info</a
   >
-  <div class="px-8"></div>
+  <div class="px-8"></div> -->
+
   <a
+    *ngIf="(userInfo | async)?.data().role.includes('seller')"
+    href="/seller"
+    mat-raised-button
+    color="accent"
+    >Update Seller Profile</a
+  >
+  <div class="px-8"></div>
+
+  <!-- <a
     *ngIf="
       !(buyerInfo | async)?.data() &&
       (userInfo | async)?.data().role.includes('buyer')
@@ -19,6 +29,15 @@
     mat-raised-button
     color="accent"
     >Buyer Info</a
+  >
+  <div class="px-8"></div> -->
+
+  <a
+    *ngIf="(userInfo | async)?.data().role.includes('buyer')"
+    href="/buyer"
+    mat-raised-button
+    color="accent"
+    >Update Buyer Profile</a
   >
   <div class="px-8"></div>
   <button mat-raised-button color="primary" (click)="logout()">Logout</button>

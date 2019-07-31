@@ -15,13 +15,14 @@ export class SellerComponent implements OnInit {
   sellerInfo = null;
   sub: Subscription = null;
   uid = null;
+  userData = null;
   constructor(
     private fb: FormBuilder,
     private afs: AngularFirestore,
     private auth: AngularFireAuth,
     private router: Router
   ) {
-    this.form = fb.group({
+    this.form = this.fb.group({
       name: ["", Validators.required],
       age: ["", Validators.required],
       address: ["", Validators.required]
@@ -31,6 +32,21 @@ export class SellerComponent implements OnInit {
   ngOnInit() {
     this.sub = this.auth.authState.subscribe(user => {
       this.uid = user.uid;
+      // pull seller data from firebase
+      this.afs
+        .collection("sellers")
+        .doc(this.uid)
+        .get()
+        .subscribe(data => {
+          if (data.exists) {
+            let { name, age, address } = data.data();
+            this.form = this.fb.group({
+              name: [name, Validators.required],
+              age: [age, Validators.required],
+              address: [address, Validators.required]
+            });
+          }
+        });
     });
   }
 
